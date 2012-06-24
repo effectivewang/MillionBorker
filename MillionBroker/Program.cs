@@ -9,15 +9,12 @@ namespace MillionBroker
 {
     class Program
     {
-        private static SemaphoreSlim Semaphore;
-
         static void Main(string[] args)
         {
             Array array = Enum.GetValues(typeof(OrderQueueType));
             ManualResetEvent[] resets = new ManualResetEvent[array.Length];
 
-            Semaphore = new SemaphoreSlim(array.Length);
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 5; i++)
             {
                 Console.WriteLine(string.Format("<{0}> Time {0} Performance Statistics", i + 1));
                 Header();
