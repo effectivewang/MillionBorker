@@ -9,5 +9,10 @@ namespace MillionBroker
     {
         public int TradeID { get; set; }
         public string SymbolName { get; set; }
+
+        public override string ToString()
+        {
+            return string.Format("TradeID: {0}, Symbol: {1}", TradeID, SymbolName);
+        }
     }
 }

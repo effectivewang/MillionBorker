@@ -8,7 +8,7 @@ namespace MillionBroker.Collection
 {
     class ReaderWriterLockSlimBlockingQueue : IOrderQueue
     {
-        private ReaderWriterLockSlim Lock = new ReaderWriterLockSlim(LockRecursionPolicy.NoRecursion);
+        private ReaderWriterLockSlim Lock = new ReaderWriterLockSlim(LockRecursionPolicy.SupportsRecursion);
 
         private Queue<Order> OrderQueue = new Queue<Order>();
 
@@ -41,7 +41,7 @@ namespace MillionBroker.Collection
 
         public void Enqueue(Order order)
         {
-            Lock.AcquireWriterLock(TimeSpan.FromMilliseconds(1000));
+            Lock.AcquireWriterLock(-1);
 
             OrderQueue.Enqueue(order);
 
@@ -50,7 +50,7 @@ namespace MillionBroker.Collection
 
         public Order Dequeue()
         {
-            Lock.AcquireReaderLock(TimeSpan.FromMilliseconds(1000));
+            Lock.AcquireReaderLock(50000);
             if (OrderQueue.Count > 0)
                 return OrderQueue.Dequeue();
 
@@ -62,12 +62,11 @@ namespace MillionBroker.Collection
 
     class MonitorBlockingQueue : IOrderQueue
     {
-        private object SyncRoot = new object();
         private Queue<Order> OrderQueue = new Queue<Order>();
 
         public void Enqueue(Order order)
         {
-            lock (SyncRoot)
+            lock (OrderQueue)
             {
                 OrderQueue.Enqueue(order);
             }
@@ -75,7 +74,7 @@ namespace MillionBroker.Collection
 
         public Order Dequeue()
         {
-            lock (SyncRoot)
+            lock (OrderQueue)
             {
                 if (OrderQueue.Count > 0)
                     return OrderQueue.Dequeue();

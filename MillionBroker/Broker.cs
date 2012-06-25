@@ -22,6 +22,7 @@ namespace MillionBroker
                 while (order != null)
                 {
                     order.Status = Order.OrderStatus.Processed;
+                    order = QueueProvider.Instance.Dequeue();
                 }
 
                 if (Complete != null)

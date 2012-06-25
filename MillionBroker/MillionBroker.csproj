@@ -57,10 +57,13 @@
     <Compile Include="Collection\OrderQueue.cs" />
     <Compile Include="Collection\OrderQueueFactory.cs" />
     <Compile Include="Collection\OrderQueueType.cs" />
+    <Compile Include="Test\CollectionPerformanceTest.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueueProvider.cs" />
     <Compile Include="Data\Trade.cs" />
+    <Compile Include="Test\ITest.cs" />
+    <Compile Include="Test\SemaphoreTest.cs" />
     <Compile Include="TradeConsole.cs" />
     <Compile Include="Data\TradeDataProvider.cs" />
     <Compile Include="Trader.cs" />
