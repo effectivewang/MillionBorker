@@ -50,12 +50,14 @@ namespace MillionBroker.Collection
 
         public Order Dequeue()
         {
-            Lock.AcquireReaderLock(50000);
-            if (OrderQueue.Count > 0)
-                return OrderQueue.Dequeue();
-
+            Lock.AcquireReaderLock(-1);
+            Order order = null;
+            if (OrderQueue.Count > 0) { 
+                order = OrderQueue.Dequeue();
+            }
             Lock.ReleaseReaderLock();
-            return null;
+
+            return order;
 
         }
     }
