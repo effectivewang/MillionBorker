@@ -2,7 +2,7 @@ Million Broker is a performance testing application, to simulate a proceducer & 
 
 Million Traders will buy random trades in real-time, and Broker will in another thread read the orders async.
 
-The Perofmance result should like below (One Hundred Thoudsand broker testing):
+The Perofmance result should like below (One Hundred Thoudsand traders and one broker testing):
 
 <2> Time 2 Performance Statistics
 Structure                                                       Milliseconds
