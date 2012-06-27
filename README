@@ -1,16 +1,16 @@
-Million Broker is a performance testing application, to simulate a proceducer & consumer environment.
+Million broker is a performance testing application, to simulate a proceducer & consumer environment.
 
-Million Traders will buy random trades in real-time, and Broker will in another thread read the orders async.
+Million traders will buy random trades in real-time, and broker will in other threads read the orders async.
 
-The Perofmance result should like below (One Hundred Thoudsand traders and one broker testing):
+The perofmance result should like below:
 
-<2> Time 2 Performance Statistics
+<1> Time 1 Performance Statistics
 Structure                                                       Milliseconds
 ----------------------------------------                        --------------------
-                    ConcurrentQueue                             116946
-                 BlockingCollection                             125175
-                    ConcurrentStack                             106140
-                      ConcurrentBag                             103863
-               MonitorBlockingQueue                             107317
-      ReaderWriterLockBlockingQueue                             110493
-  ReaderWriterLockSlimBlockingQueue                             103552
+                    ConcurrentQueue                             2058
+                 BlockingCollection                             2598
+                    ConcurrentStack                             2114
+                      ConcurrentBag                             2393
+               MonitorBlockingQueue                             1811
+      ReaderWriterLockBlockingQueue                             6625
+  ReaderWriterLockSlimBlockingQueue                             2085

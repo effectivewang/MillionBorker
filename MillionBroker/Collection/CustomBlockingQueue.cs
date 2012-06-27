@@ -23,13 +23,15 @@ namespace MillionBroker.Collection
 
         public Order Dequeue()
         {
-            Lock.EnterReadLock();
-            if (OrderQueue.Count > 0)
-                return OrderQueue.Dequeue();
+            Lock.EnterWriteLock();
+            Order order = null;
+            if (OrderQueue.Count > 0) {
+                order = OrderQueue.Dequeue();
+            }
 
-            Lock.ExitReadLock();
-            return null;
+            Lock.EnterWriteLock();
 
+            return order;
         }
     }
 

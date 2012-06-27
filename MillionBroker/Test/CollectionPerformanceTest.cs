@@ -10,7 +10,7 @@ namespace MillionBroker.Test
     class CollectionPerformanceTest : ITest
     {
         public void Test()
-        {
+        {           
             Array array = Enum.GetValues(typeof(OrderQueueType));
             ManualResetEvent[] resets = new ManualResetEvent[array.Length];
 
