@@ -16,7 +16,7 @@ namespace MillionBroker
 
         public void Sell()
         {
-            Thread thread = new Thread(() =>
+            ThreadPool.QueueUserWorkItem(delegate(object state)
             {
                 Order order = QueueProvider.Instance.Dequeue();
                 while (order != null)
@@ -26,9 +26,13 @@ namespace MillionBroker
                 }
 
                 if (Complete != null)
-                    Complete();
+                {
+                    lock (Complete)
+                    {
+                        Complete();
+                    }
+                }
             });
-            thread.Start();
         }
     }
 }
